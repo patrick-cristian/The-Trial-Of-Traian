@@ -9,7 +9,7 @@
                                                                                       
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Trial of Traian is a top-down, pixel art and lightweight RPG game that intertwines both an
+The Trials of Traian is a top-down, pixel art and lightweight RPG game that intertwines both an
 enjoyable gameplay and Romanian historic elements.
 
 Story-wise, the player is the mighty Traian on his quest to put an end to Decebal’s reign. Stuck deep down in a gloomy Dacian fortress, you have to fight your way through swarms of 
