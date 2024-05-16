@@ -1,0 +1,25 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  _______ _            _______   _       _          __   _______        _             
+ |__   __| |          |__   __| (_)     | |        / _| |__   __|      (_)            
+    | |  | |__   ___     | |_ __ _  __ _| |   ___ | |_     | |_ __ __ _ _  __ _ _ __  
+    | |  | '_ \ / _ \    | | '__| |/ _` | |  / _ \|  _|    | | '__/ _` | |/ _` | '_ \ 
+    | |  | | | |  __/    | | |  | | (_| | | | (_) | |      | | | | (_| | | (_| | | | |
+    |_|  |_| |_|\___|    |_|_|  |_|\__,_|_|  \___/|_|      |_|_|  \__,_|_|\__,_|_| |_|
+                                                                                      
+                                                                                      
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Trial of Traian is a top-down, pixel art and lightweight RPG game that intertwines both an
+enjoyable gameplay and Romanian historic elements.
+
+Story-wise, the player is the mighty Traian on his quest to put an end to Decebal’s reign. Stuck deep down in a gloomy Dacian fortress, you have to fight your way through swarms of 
+enemy troops in order to defeat the Last Dacian King. 
+
+As for the gameplay, to make the user experience much more diverse and unique each time the
+game is booted a random room configuration is procedurally generated such that no two sessions
+are the same. By successfully defeating enemy AI you earn RON (game currency) which can be 
+exchanged at the Trader Interface for new weapons and upgrades to aid you in your endeavour.   
+This game can foster a myriad of play styles from going all in with a sword to fighing from
+a longer range with a bow.
+
+Will you be able to defeat Decebal? There’s only one way to find out…
