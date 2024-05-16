@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://baxji4xycotfy"]
+
+[ext_resource type="Script" path="res://game_content/items/projectile.gd" id="1_t3gry"]
+[ext_resource type="Texture2D" uid="uid://bwmcavtvjrber" path="res://sprites/objects/rock.png" id="2_c10g6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5h3l"]
+radius = 6.0
+
+[node name="Rock" type="AnimatableBody2D"]
+collision_layer = 0
+collision_mask = 4
+sync_to_physics = false
+script = ExtResource("1_t3gry")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_c10g6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h5h3l")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

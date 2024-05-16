@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqlwj7px0dvaw"]
+
+[ext_resource type="Script" path="res://game_content/gui/textbox.gd" id="1_f8det"]
+[ext_resource type="Texture2D" uid="uid://b44je1ft0d84q" path="res://sprites/entities/King_Sprite_Sheet.png" id="2_1nrp6"]
+[ext_resource type="StyleBox" uid="uid://c08jq6yij3n1i" path="res://gui_theme/panel.tres" id="2_lloqj"]
+[ext_resource type="Texture2D" uid="uid://bo3887jda0o3x" path="res://sprites/gui/portrait mask.png" id="2_pbipe"]
+[ext_resource type="FontFile" uid="uid://dgu4d2arj4yqc" path="res://gui_theme/antiquity-print.ttf" id="4_52onc"]
+[ext_resource type="AudioStream" uid="uid://ces53o1ow3vkl" path="res://sounds/gui/dialogue.wav" id="6_ln7qp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roqa1"]
+atlas = ExtResource("2_1nrp6")
+region = Rect2(22, 6, 18, 18)
+
+[node name="Textbox" type="CanvasLayer"]
+script = ExtResource("1_f8det")
+default_portrait = SubResource("AtlasTexture_roqa1")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.9
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("2_lloqj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(108.735, 0)
+layout_mode = 2
+texture = ExtResource("2_pbipe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Portrait" type="TextureRect" parent="Panel/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.79999
+offset_right = 2.79999
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("4_52onc")
+theme_override_font_sizes/font_size = 24
+text = "Placeholder text"
+autowrap_mode = 3
+visible_characters_behavior = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ln7qp")

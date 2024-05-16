@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf2a3rmudlt0e"]
+
+[ext_resource type="Texture2D" uid="uid://bc8a4m8wm3r7b" path="res://sprites/gui/borders.png" id="1_bp0br"]
+[ext_resource type="Script" path="res://game_content/gui/shop_item_icon.gd" id="2_1f18y"]
+[ext_resource type="Texture2D" uid="uid://bqgs20x66wn1q" path="res://sprites/objects/bow.png" id="2_ey4ss"]
+
+[node name="ShopItemIcon" type="Sprite2D"]
+position = Vector2(0, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_bp0br")
+hframes = 10
+vframes = 8
+frame = 16
+script = ExtResource("2_1f18y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_ey4ss")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -67.3333
+offset_top = -32.6667
+offset_right = -1.33334
+offset_bottom = -9.66667
+grow_horizontal = 2
+grow_vertical = 0
+text = "Item Name"
+horizontal_alignment = 1

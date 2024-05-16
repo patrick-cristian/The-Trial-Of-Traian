@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2duib73qnmyn"]
+
+[ext_resource type="Texture2D" uid="uid://cspva5qe0k7s4" path="res://sprites/tilemaps/Full.png" id="1_hkgbo"]
+[ext_resource type="Script" path="res://game_content/objects/torch.gd" id="2_04nu6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcbmo"]
+atlas = ExtResource("1_hkgbo")
+region = Rect2(168, 160, 16, 32)
+
+[sub_resource type="Gradient" id="Gradient_sj17d"]
+offsets = PackedFloat32Array(0, 0.0234972, 0.154645, 0.30765, 0.638251, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0.447059, 1, 0.411765, 0, 0.611765, 1, 0.878431, 0, 0.129412, 1, 0.878431, 0, 0.0588235, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4g01f"]
+gradient = SubResource("Gradient_sj17d")
+width = 128
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_tlk67"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 2.3, 1.87, 3.0, 2.5, 2.42, 2.336, 3.0, 2.6, 2.8, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [4.0, 2.0, 2.92, 2.75, 4.83, 2.86, 4.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dnw32"]
+_data = {
+"loop": SubResource("Animation_tlk67")
+}
+
+[node name="Torch" type="Sprite2D"]
+z_index = 10
+texture = SubResource("AtlasTexture_jcbmo")
+script = ExtResource("2_04nu6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 2
+position = Vector2(0, -6)
+scale = Vector2(0.5, 0.5)
+energy = 3.43
+texture = SubResource("GradientTexture2D_4g01f")
+texture_scale = 2.8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dnw32")
+}
+autoplay = "loop"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -7.0
+offset_right = 2.0
+offset_bottom = -3.0

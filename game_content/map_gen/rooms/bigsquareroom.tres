@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=7 format=3 uid="uid://bwjcyyfy8gqdw"]
+
+[ext_resource type="Script" path="res://game_content/map_gen/doors/door_data.gd" id="1_h27cm"]
+[ext_resource type="Script" path="res://game_content/map_gen/rooms/room_data.gd" id="1_vxus0"]
+
+[sub_resource type="Resource" id="Resource_qpeqh"]
+script = ExtResource("1_h27cm")
+tile_cell = Vector2i(10, 28)
+side = 3
+id = 0
+spawn_chance = 0.5
+
+[sub_resource type="Resource" id="Resource_rs6uj"]
+script = ExtResource("1_h27cm")
+tile_cell = Vector2i(-5, 10)
+side = 0
+id = 1
+spawn_chance = 0.5
+
+[sub_resource type="Resource" id="Resource_wt8cw"]
+script = ExtResource("1_h27cm")
+tile_cell = Vector2i(24, 10)
+side = 2
+id = 2
+spawn_chance = 0.5
+
+[sub_resource type="Resource" id="Resource_x2fq5"]
+script = ExtResource("1_h27cm")
+tile_cell = Vector2i(10, -6)
+side = 1
+id = 3
+spawn_chance = 0.5
+
+[resource]
+script = ExtResource("1_vxus0")
+scene = "res://game_content/map_gen/rooms/bigsquareroom.tscn"
+rect = Rect2i(-9, -8, 37, 38)
+doors = Array[ExtResource("1_h27cm")]([SubResource("Resource_qpeqh"), SubResource("Resource_rs6uj"), SubResource("Resource_wt8cw"), SubResource("Resource_x2fq5")])
+entrance_sides = {
+0: [1],
+1: [3],
+2: [2],
+3: [0]
+}
+follow_player = true

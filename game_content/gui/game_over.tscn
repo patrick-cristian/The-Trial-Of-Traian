@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd6myl6t1h4rt"]
+
+[ext_resource type="Script" path="res://game_content/gui/game_over.gd" id="1_upqgc"]
+[ext_resource type="AudioStream" uid="uid://coo0fxoo4dk48" path="res://sounds/gui/move.wav" id="3_bn4jo"]
+[ext_resource type="AudioStream" uid="uid://cxq3k2yj6mm4e" path="res://sounds/death.wav" id="3_m5ld3"]
+[ext_resource type="AudioStream" uid="uid://c41fcrhxg5hlv" path="res://sounds/gui/select.wav" id="4_57f1w"]
+
+[node name="TitleScreen" type="CanvasLayer" node_paths=PackedStringArray("buttons", "move_audio", "select_audio")]
+script = ExtResource("1_upqgc")
+buttons = [NodePath("VBoxContainer/Panel"), NodePath("VBoxContainer/Panel2")]
+move_audio = NodePath("Move")
+select_audio = NodePath("Select")
+dungeon_scene = "res://game_content/map_gen/dungeon.tscn"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -366.5
+offset_right = 366.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "TRAIAN... 
+A CAZUT!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "TRY AGAIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bn4jo")
+
+[node name="DEATH" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m5ld3")
+autoplay = true
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_57f1w")

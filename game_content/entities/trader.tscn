@@ -1,0 +1,148 @@
+[gd_scene load_steps=18 format=3 uid="uid://ijdjdv2jiq80"]
+
+[ext_resource type="Texture2D" uid="uid://dy45qaccke8ly" path="res://sprites/entities/trader.png" id="1_0xrwg"]
+[ext_resource type="Script" path="res://game_content/entities/trader.gd" id="1_xw2nm"]
+[ext_resource type="PackedScene" uid="uid://bf2a3rmudlt0e" path="res://game_content/gui/shop_item_icon.tscn" id="3_yd6up"]
+[ext_resource type="Texture2D" uid="uid://lc4erm7v0lxf" path="res://sprites/objects/coin.png" id="4_bvnqf"]
+[ext_resource type="Texture2D" uid="uid://dsg6vhtxenqks" path="res://sprites/objects/sword.png" id="4_tifur"]
+[ext_resource type="PackedScene" uid="uid://bluxy47ijp0kf" path="res://game_content/gui/prompt.tscn" id="5_whsar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb7h8"]
+size = Vector2(15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb23j"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fnlp"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpi0o"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_086rv"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym7x4"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujhab"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lch0"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak8ja"]
+atlas = ExtResource("1_0xrwg")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_joaih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb23j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fnlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpi0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_086rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym7x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujhab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lch0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ak8ja")
+}],
+"loop": true,
+"name": &"trader_idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipobu"]
+radius = 50.0
+
+[node name="Trader" type="StaticBody2D" node_paths=PackedStringArray("items", "highlighter", "item_parent")]
+script = ExtResource("1_xw2nm")
+items = [NodePath("Items/Item01"), NodePath("Items/Item02"), null]
+highlighter = NodePath("Items/Sprite2D")
+item_parent = NodePath("Items")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_wb7h8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_joaih")
+animation = &"trader_idle"
+autoplay = "trader_idle"
+frame_progress = 0.528148
+
+[node name="Items" type="Node2D" parent="."]
+z_index = 100
+
+[node name="Item01" parent="Items" instance=ExtResource("3_yd6up")]
+position = Vector2(-28, 44)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="Items/Item01" index="0"]
+scale = Vector2(1.61, 1.61)
+texture = ExtResource("4_tifur")
+
+[node name="Label" parent="Items/Item01" index="1"]
+offset_left = -78.3333
+offset_top = -24.0
+offset_right = 9.66668
+offset_bottom = 35.0
+text = "SWORD
+30 ron"
+
+[node name="Item02" parent="Items" instance=ExtResource("3_yd6up")]
+position = Vector2(28, 44)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="Items/Item02" index="0"]
+scale = Vector2(1.61, 1.61)
+
+[node name="Label" parent="Items/Item02" index="1"]
+offset_left = -77.3333
+offset_top = -20.6667
+offset_right = 8.66668
+offset_bottom = 38.3333
+text = "BOW
+30 ron"
+
+[node name="Sprite2D" type="Sprite2D" parent="Items"]
+modulate = Color(1, 1, 1, 0.0470588)
+position = Vector2(-28, 44)
+scale = Vector2(4, 4)
+texture = ExtResource("4_bvnqf")
+
+[node name="Prompt" parent="." instance=ExtResource("5_whsar")]
+visible = false
+position = Vector2(0, 41)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prompt"]
+shape = SubResource("CircleShape2D_ipobu")
+debug_color = Color(0, 0.701961, 0, 0.0862745)
+
+[connection signal="prompt_pressed" from="Prompt" to="." method="open_shop"]
+
+[editable path="Items/Item01"]
+[editable path="Items/Item02"]

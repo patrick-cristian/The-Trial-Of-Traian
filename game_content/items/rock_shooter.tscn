@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://efpr7aehhc3l"]
+
+[ext_resource type="Script" path="res://game_content/items/projectile_shooter.gd" id="1_jchv4"]
+[ext_resource type="Texture2D" uid="uid://bwmcavtvjrber" path="res://sprites/objects/rock.png" id="2_mb41f"]
+[ext_resource type="AudioStream" uid="uid://n43ehtbmh6dj" path="res://sounds/shoot_arrow.wav" id="3_b0far"]
+
+[node name="RockShooter" type="Node2D"]
+z_index = 1
+script = ExtResource("1_jchv4")
+projectile_speed = 500.0
+projectile_damage = 1
+projectile_scene_path = "res://game_content/items/rock.tscn"
+cooldown = 0.3
+velocity_multiplier = 0.8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mb41f")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b0far")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(2, 1)

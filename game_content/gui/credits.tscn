@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://clela8b58x7nv"]
+
+[ext_resource type="Script" path="res://game_content/gui/credits.gd" id="1_0dvpu"]
+[ext_resource type="AudioStream" uid="uid://kodrxagtelbm" path="res://sounds/music/credits.ogg" id="1_143qd"]
+
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_0dvpu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_143qd")
+autoplay = true
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "THANKS FOR PLAYING!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][font_size=40]Our Team:
+[font_size=30]Andrei O.
+[font_size=15]David Babacu
+Patrick Burasan
+Stefan Onisoru
+Stefan Vladut
+Tudor Tica
+
+[font_size=40]Assets Used:
+[font_size=15]https://elthen.itch.io/2d-pixel-art-royal-family
+https://pixivan.itch.io/traders-top-down-npc
+https://youtu.be/5bn3Jmvep1k?si=ifmceAXyv0xROtpf
+https://siviovi.itch.io/dacian-warrior-aimated-pixel-art-2d
+https://stealthix.itch.io/animated-traps
+https://www.infoland.ro/z/columna_lui_traian_roma.htm
+(...and maybe others?)
+
+[font_size=25]Made with love, and the GODOT engine!
+"
+fit_content = true

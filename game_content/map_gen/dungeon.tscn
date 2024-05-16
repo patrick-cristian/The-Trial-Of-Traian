@@ -1,0 +1,86 @@
+[gd_scene load_steps=17 format=3 uid="uid://b4q03n0sx8c4l"]
+
+[ext_resource type="PackedScene" uid="uid://dvf4bei4fvysp" path="res://game_content/entities/player/player.tscn" id="1_g6vvk"]
+[ext_resource type="Script" path="res://game_content/map_gen/map_generator.gd" id="3_4aoih"]
+[ext_resource type="Resource" uid="uid://bwjcyyfy8gqdw" path="res://game_content/map_gen/rooms/bigsquareroom.tres" id="3_oqhld"]
+[ext_resource type="Resource" uid="uid://bcj1mhxk3jm4n" path="res://game_content/map_gen/rooms/square_room.tres" id="4_gn86l"]
+[ext_resource type="Resource" uid="uid://cbdq7jwxax5j" path="res://game_content/map_gen/rooms/l1room.tres" id="4_m5nft"]
+[ext_resource type="Script" path="res://game_content/entities/player/player_camera.gd" id="5_1tjff"]
+[ext_resource type="Resource" uid="uid://cd12uekkhwvb" path="res://game_content/map_gen/rooms/l2room.tres" id="5_dpe5f"]
+[ext_resource type="Resource" uid="uid://mbl6ql2w8hhu" path="res://game_content/map_gen/rooms/longroom.tres" id="6_3tfll"]
+[ext_resource type="Resource" uid="uid://cs0oghmu3gcl2" path="res://game_content/map_gen/rooms/tallroom.tres" id="7_6adty"]
+[ext_resource type="Resource" uid="uid://btq68fcjdii3l" path="res://game_content/map_gen/rooms/start_room.tres" id="8_mvuh5"]
+[ext_resource type="Script" path="res://game_content/gui/money_counter.gd" id="11_8g54u"]
+[ext_resource type="AudioStream" uid="uid://dp1vcnqxnbjr1" path="res://sounds/coin.wav" id="12_6q0hb"]
+[ext_resource type="AudioStream" uid="uid://yrcif01nl0ra" path="res://sounds/music/dungeon.ogg" id="13_bcobx"]
+
+[sub_resource type="Gradient" id="Gradient_sj17d"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y7mhg"]
+gradient = SubResource("Gradient_sj17d")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Environment" id="Environment_stm26"]
+background_mode = 3
+tonemap_mode = 2
+tonemap_exposure = 0.9
+glow_enabled = true
+glow_strength = 1.1
+glow_bloom = 0.25
+glow_blend_mode = 0
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.01
+adjustment_saturation = 1.1
+
+[node name="Dungeon" type="Node2D"]
+y_sort_enabled = true
+
+[node name="MapGenerator" type="Node2D" parent="."]
+z_index = -10
+y_sort_enabled = true
+script = ExtResource("3_4aoih")
+room_datas = Array[Resource("res://game_content/map_gen/rooms/room_data.gd")]([ExtResource("4_gn86l"), ExtResource("3_oqhld"), ExtResource("4_m5nft"), ExtResource("5_dpe5f"), ExtResource("6_3tfll"), ExtResource("7_6adty")])
+start_room = ExtResource("8_mvuh5")
+
+[node name="Player" parent="." instance=ExtResource("1_g6vvk")]
+z_index = 10
+
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+scale = Vector2(1.00259, 1.01609)
+color = Color(1, 0.905343, 0.666807, 1)
+texture = SubResource("GradientTexture2D_y7mhg")
+texture_scale = 3.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+script = ExtResource("5_1tjff")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_stm26")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.823153, 0.823153, 0.823153, 1)
+blend_mode = 1
+
+[node name="MoneyCanvas" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="MoneyCanvas" node_paths=PackedStringArray("audio")]
+offset_left = 16.0
+offset_top = 29.0
+offset_right = 140.0
+offset_bottom = 57.0
+text = "0 ron"
+script = ExtResource("11_8g54u")
+audio = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MoneyCanvas/Label"]
+stream = ExtResource("12_6q0hb")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("13_bcobx")
+autoplay = true

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnabldg6ynt8g"]
+
+[ext_resource type="PackedScene" uid="uid://53munfb62wqs" path="res://game_content/map_gen/doors/door.tscn" id="1_kh1f3"]
+[ext_resource type="Texture2D" uid="uid://c68wqiul34h3d" path="res://sprites/tilemaps/tiles/32.png" id="2_ei571"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhspl"]
+size = Vector2(32, 11)
+
+[node name="DoorDown" instance=ExtResource("1_kh1f3")]
+side = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture_filter = 1
+rotation = 3.14159
+texture = ExtResource("2_ei571")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -16.5)
+shape = SubResource("RectangleShape2D_vhspl")
+
+[node name="ExitPoint" parent="." index="2"]
+position = Vector2(0, -51)

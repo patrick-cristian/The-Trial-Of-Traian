@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://dvf4bei4fvysp"]
+
+[ext_resource type="Script" path="res://game_content/entities/player/player_controller.gd" id="1_1cdrk"]
+[ext_resource type="Texture2D" uid="uid://bg46ttsrtlmnn" path="res://sprites/objects/shadow.png" id="2_ae6vs"]
+[ext_resource type="Texture2D" uid="uid://b44je1ft0d84q" path="res://sprites/entities/King_Sprite_Sheet.png" id="3_kjgyu"]
+[ext_resource type="Script" path="res://game_content/entities/health.gd" id="3_re00c"]
+[ext_resource type="AudioStream" uid="uid://ddyutsusej88f" path="res://sounds/hurt.wav" id="5_in5d8"]
+[ext_resource type="PackedScene" uid="uid://efpr7aehhc3l" path="res://game_content/items/rock_shooter.tscn" id="5_qokg8"]
+[ext_resource type="PackedScene" uid="uid://bphicqkv1y6is" path="res://game_content/items/stick.tscn" id="6_5vjwi"]
+[ext_resource type="PackedScene" uid="uid://dubfoajv4v763" path="res://game_content/items/bow.tscn" id="8_hoa4s"]
+[ext_resource type="AudioStream" uid="uid://dycu7nie576fc" path="res://sounds/step.wav" id="8_xl81i"]
+[ext_resource type="Script" path="res://game_content/entities/footsteps.gd" id="9_iq2pu"]
+[ext_resource type="PackedScene" uid="uid://dwgy7i5mmsou1" path="res://game_content/items/sword.tscn" id="9_xv7kk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d77jn"]
+
+[sub_resource type="Animation" id="Animation_q8sus"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_knxyr"]
+resource_name = "idle_down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_qrc4e"]
+resource_name = "walk_down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwspd"]
+_data = {
+"RESET": SubResource("Animation_q8sus"),
+"idle": SubResource("Animation_knxyr"),
+"walk": SubResource("Animation_qrc4e")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("items")]
+scale = Vector2(0.997419, 0.984168)
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_1cdrk")
+items = [NodePath("Items/Stick"), NodePath("Items/RockShooter")]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 9.14478)
+scale = Vector2(0.915, 0.915)
+texture = ExtResource("2_ae6vs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.00259, -5.08043)
+texture = ExtResource("3_kjgyu")
+hframes = 9
+vframes = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d77jn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jwspd")
+}
+autoplay = "idle"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ColorRect" parent="CanvasLayer"]
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 124.0
+offset_bottom = 20.0
+color = Color(0.224721, 0.00339233, 0.00339233, 1)
+
+[node name="HealthBarFIlled" type="ColorRect" parent="CanvasLayer/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("damage_audio_player", "bar")]
+script = ExtResource("3_re00c")
+damage_audio_player = NodePath("../Hurt")
+bar = NodePath("../CanvasLayer/HealthBar/HealthBarFIlled")
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="RockShooter" parent="Items" instance=ExtResource("5_qokg8")]
+visible = false
+
+[node name="Stick" parent="Items" instance=ExtResource("6_5vjwi")]
+visible = false
+
+[node name="Bow" parent="Items" instance=ExtResource("8_hoa4s")]
+visible = false
+position = Vector2(13, 4)
+cooldown = 0.54
+
+[node name="Sword" parent="Items" instance=ExtResource("9_xv7kk")]
+visible = false
+velocity_multiplier = 0.6
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="." node_paths=PackedStringArray("entity")]
+stream = ExtResource("8_xl81i")
+volume_db = 10.0
+script = ExtResource("9_iq2pu")
+entity = NodePath("..")
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1.00259, 1.01609)
+stream = ExtResource("5_in5d8")
+
+[connection signal="died" from="Health" to="." method="die"]

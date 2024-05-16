@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d13mc8j22jpnc"]
+
+[ext_resource type="StyleBox" uid="uid://c08jq6yij3n1i" path="res://gui_theme/panel.tres" id="1_k8lrp"]
+[ext_resource type="FontFile" uid="uid://dgu4d2arj4yqc" path="res://gui_theme/antiquity-print.ttf" id="2_sjuxn"]
+
+[resource]
+default_font = ExtResource("2_sjuxn")
+default_font_size = 18
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.498039, 0.282353, 0.290196, 1)
+Label/constants/outline_size = 9
+Panel/styles/panel = ExtResource("1_k8lrp")

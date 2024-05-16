@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://do1ynayvcn71a"]
+
+[ext_resource type="Texture2D" uid="uid://bg46ttsrtlmnn" path="res://sprites/objects/shadow.png" id="1_2qapx"]
+[ext_resource type="Script" path="res://game_content/objects/money.gd" id="1_xrejj"]
+[ext_resource type="Texture2D" uid="uid://lc4erm7v0lxf" path="res://sprites/objects/coin.png" id="3_xe4df"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d77jn"]
+radius = 5.0
+
+[node name="Money" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xrejj")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2qapx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_d77jn")
+
+[node name="Coin" type="Sprite2D" parent="."]
+texture = ExtResource("3_xe4df")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]

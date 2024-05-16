@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://53munfb62wqs"]
+
+[ext_resource type="Script" path="res://game_content/map_gen/doors/door.gd" id="1_nyw85"]
+
+[node name="Door" type="Area2D" groups=["door"]]
+collision_mask = 2
+script = ExtResource("1_nyw85")
+
+[node name="ExitPoint" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
