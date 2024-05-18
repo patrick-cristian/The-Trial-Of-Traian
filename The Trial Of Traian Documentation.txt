@@ -23,3 +23,10 @@ This game can foster a myriad of play styles from going all in with a sword to f
 a longer range with a bow.
 
 Will you be able to defeat Decebal? There’s only one way to find out…
+
+Controls:
+* Movement: W/A/S/D
+* Interaction: E
+* Exiting menus: Esc
+* Shooting: LMB
+* Switch weapons: 1/2
